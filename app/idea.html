@@ -1,0 +1,21 @@
+<html ng-app="ideaStore" ng-controller="mainController as main" >
+<head>
+	
+	<script src="../node_modules/angular/angular.js"></script>
+	<script src="../node_modules/angular-route/angular-route.min.js"></script>
+	<script src="../node_modules/angular-encode-uri/dist/angular-encode-uri.min.js"></script>
+	<script src="../javascript/index.js"></script>
+	<script src="../javascript/controllers/formController.js"></script>
+	<script src="../javascript/controllers/mainController.js"></script>
+	<script src="../javascript/controllers/ideaController.js"></script>
+	<title> {{ name }} </title>
+</head>
+<body class="container-fluid">
+	<div ng-include="'./../templates/header.html'"></div>
+	<div ng-controller="ideaController">
+		<h1 class="secondTitle">{{ title | uppercase }}</h2>
+		<p>{{ desc | lowercase }}</p>
+	</div>
+</body>
+</html>
+

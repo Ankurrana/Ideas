@@ -1,0 +1,72 @@
+<html ng-app="ideaStore" ng-controller="mainController as main">
+<head>
+	<title>{{ name }}</title>
+	<script src="../node_modules/angular/angular.js"></script>
+	<script src="../node_modules/angular-route/angular-route.min.js"></script>
+	
+	<script src="../node_modules/angular-encode-uri/dist/angular-encode-uri.min.js"></script>
+	<script src="../javascript/index.js"></script>
+	<script src="../javascript/services/formChecker.js"></script>
+	<script src="../node_modules/angular-route/angular-route.min.js"></script>
+	<script src="../javascript/controllers/formController.js"></script>
+	<script src="../javascript/controllers/mainController.js"></script>
+	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+
+	
+	<style>
+		body {
+			width : 75%;
+			margin:auto;
+			margin-top:50px;
+		}
+
+	</style>
+</head>
+	<body class="container-fluid">
+
+		<div ng-include="'./templates/header.html'"></div>
+		<hr>
+			<div class="row">
+
+				<div class="col-md-12">
+			
+				
+				<form novalidate ng-controller="formController" ng-init="allIdeas()">
+					<p>{{ quote }}</p>
+
+				<div class="col-mid-12">
+					<div ng-if="formError != ''">
+						<div class="alert alert-danger">
+  							<strong><span class="glyphicon glyphicon-remove-sign"></span> Error!</strong> {{formError}}
+						</div>			
+					</div>
+					<div ng-if="successMsg != ''">
+						<div class="alert alert-success">
+  							<strong><span class="glyphicon glyphicon-thumbs-up"> Success!</strong> {{ successMsg }}
+						</div>			
+					</div>
+				</div>
+				<label for="title"> Title</label>
+				<input type="text" name="title" ng-change="check()" ng-model="idea.title"></input>
+
+				<label for="desc"> Description </label>
+				<input type="textarea" ng-change="check()" name="desc" ng-model="idea.desc" resizeable size="70"></input>
+				<button ng-click="submit()">Submit</button>
+				<button ng-click="reset()">Reset</button>
+				<!-- {{ idea  }}-->		
+				<!-- <button ng-click="allIdeas()">Reload Current Mails </button> --></div>
+			</form>
+		</div>
+	</body>
+	<p>	
+			<div class="row" ng-repeat="idea in ideas.data">
+			
+					<div class="col-md-3"><a target="_self "href='/idea/{{ idea.title | encodeUri }}'> {{ idea.title }} </a></div>
+				<div class="col-md-7">{{ idea.desc }}</div>
+				<div class="col-md-1"><button ng-click="delete(idea.title)"><span class="glyphicon glyphicon-trash"></span></button></div>
+				
+			</div>
+	</p>
+	<script>
+	</script>
+</html>
